@@ -37,7 +37,7 @@ public class ColorActivity extends AppCompatActivity {
                 // Setting the background color
                 constraintLayout.setBackgroundColor(Color.parseColor((String)colorAdapter.getItem(position)));
                 // Output message
-                Toast.makeText(ColorActivity.this, "Selection has been made!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ColorActivity.this, "Color selected!", Toast.LENGTH_LONG).show();
             }
 
 

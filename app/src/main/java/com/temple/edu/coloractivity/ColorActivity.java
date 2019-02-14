@@ -23,7 +23,7 @@ public class ColorActivity extends AppCompatActivity {
         final ConstraintLayout constraintLayout = findViewById(R.id.layout);
         Spinner spinner = findViewById(R.id.spinner);
 
-        List colorList = Arrays.asList("white", "blue", "red", "green", "yellow", "magenta", "purple", "green", "cyan", "darkgray");
+        List colorList = Arrays.asList("gray", "blue", "red", "green", "yellow", "magenta", "purple", "green", "cyan", "darkgray");
 
         final ColorAdapter colorAdapter = new ColorAdapter(this, colorList);
 
@@ -32,11 +32,11 @@ public class ColorActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Setting background color for spinner
+                // Set spinner background as white
                 view.setBackgroundColor(Color.parseColor("white"));
-                // Setting the background color
+                // Set app bakground as chosen color
                 constraintLayout.setBackgroundColor(Color.parseColor((String)colorAdapter.getItem(position)));
-                // Output message
+                // toast message
                 Toast.makeText(ColorActivity.this, "Color selected!", Toast.LENGTH_LONG).show();
             }
 

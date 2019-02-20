@@ -2,6 +2,7 @@ package com.temple.edu.coloractivity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -14,7 +15,7 @@ public class ColorAdapter extends BaseAdapter {
     Context c;
     List<String> colorList;
 
-    public ColorAdapter(Context c, List<String> colorList) {
+    public ColorAdapter(Context c, ArrayList<String> colorList) {
         this.c = c;
         this.colorList = colorList;
     }
@@ -36,19 +37,17 @@ public class ColorAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView view;
-        if(convertView instanceof TextView){
-            view = (TextView) convertView;
+        TextView t = new TextView(this.c);
+        t.setText(colorList.get(position));
+        t.setGravity(Gravity.CENTER_HORIZONTAL);
+        t.setTextSize(24);
+        t.setPadding(10, 10, 10, 10);
+        try {
+            t.setBackgroundColor(Color.parseColor(colorList.get(position)));
+        } catch (Exception e) {
+
         }
-        else {
-            view = new TextView(c);
-        }
 
-        String setColor = colorList.get(position);
-
-        view.setText(setColor);
-        view.setBackgroundColor(Color.parseColor(setColor));
-
-        return view;
+        return t;
     }
 }

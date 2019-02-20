@@ -5,7 +5,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,38 +14,60 @@ import android.widget.Toast;
 
 
 public class ColorActivity extends AppCompatActivity {
+    private boolean initial = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ConstraintLayout constraintLayout = findViewById(R.id.layout);
-        Spinner spinner = findViewById(R.id.spinner);
+        final ArrayList<String> colors = new ArrayList<>();
+        colors.add("cyan");
+        colors.add("White");
+        colors.add("Blue");
+        colors.add("Green");
+        colors.add("Magenta");
+        colors.add("Purple");
+        colors.add("gray");
+        colors.add("transparent");
+        colors.add("red");
+        colors.add("yellow");
 
-        List colorList = Arrays.asList("gray", "blue", "red", "green", "yellow", "magenta", "purple", "green", "cyan", "darkgray");
+        final View layout = findViewById(R.id.activity_palette);
+        Spinner spin = (Spinner) findViewById(R.id.color_spinner);
+        ColorAdapter co = new ColorAdapter( this, colors );
+        spin.setAdapter( co );
 
-        final ColorAdapter colorAdapter = new ColorAdapter(this, colorList);
-
-        spinner.setAdapter(colorAdapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Set spinner background as white
-                view.setBackgroundColor(Color.parseColor("white"));
-                // Set app bakground as chosen color
-                constraintLayout.setBackgroundColor(Color.parseColor((String)colorAdapter.getItem(position)));
-                // toast message
-                Toast.makeText(ColorActivity.this, "Color selected!", Toast.LENGTH_LONG).show();
-            }
 
+                if(initial ) {
+                    initial = false;
+                    return;
+                }
+
+                try {
+                    layout.setBackgroundColor(Color.parseColor(colors.get(position)));
+                    // Set app bakground as chosen color
+                    Toast.makeText(ColorActivity.this, "Color selected success!", Toast.LENGTH_LONG).show();
+                    // toast message
+                } catch (Exception e ){
+
+                }
+            }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                layout.setBackgroundColor(Color.WHITE);
             }
         });
 
     }
+
+
 }
+
+
+
+

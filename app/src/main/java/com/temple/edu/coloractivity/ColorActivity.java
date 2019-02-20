@@ -1,12 +1,10 @@
 package com.temple.edu.coloractivity;
 
 import android.graphics.Color;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import java.util.ArrayList;
-import java.util.List;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
